@@ -6,20 +6,21 @@ public class Lion {
 
     boolean hasMane;
 
-    public Lion(String sex) throws Exception {
+    public Lion(String sex, KittenInterface lion) throws Exception {
+        this.lion = lion;
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            throw new Exception("Используйте допустимые значения пола животного - Cамец или Cамка");
         }
     }
 
-    Feline feline = new Feline();
+    private final KittenInterface lion;
 
-    public int getKittens() {
-        return feline.getKittens();
+    public int getLionKittens() {
+        return lion.getKittens();
     }
 
     public boolean doesHaveMane() {
@@ -27,6 +28,7 @@ public class Lion {
     }
 
     public List<String> getFood() throws Exception {
-        return feline.getFood("Хищник");
+        Animal lion = new Animal();
+        return lion.getFood("Хищник");
     }
 }

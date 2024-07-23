@@ -14,12 +14,17 @@ public class Feline extends Animal implements Predator {
         return "Кошачьи";
     }
 
-    public int getKittens() {
-        return getKittens(1);
+    private final KittenInterface feline;
+
+    public Feline(KittenInterface feline) {
+        this.feline = feline;
     }
 
-    public int getKittens(int kittensCount) {
-        return kittensCount;
+    public int getFelineKittens() {
+        return feline.getKittens();
     }
 
+    public int getFelineKittens(int n) {
+        return feline.getKittens(n);
+    }
 }
