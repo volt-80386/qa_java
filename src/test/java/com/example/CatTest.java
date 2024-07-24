@@ -6,9 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
-import static org.junit.Assert.assertTrue;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
@@ -19,14 +18,16 @@ public class CatTest {
     Cat cat = new Cat(new Feline(kitten));
 
     @Test
-    public void test() throws Exception {
+    public void getFoodTest() throws Exception {
         cat.getFood();
         Mockito.verify(cat).getFood();
         Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), new Cat(new Feline(kitten)).getFood());
+        // Первый объект Cat - это мок, и метод ничего не возвращает (получаем AssertionError)
+        // А Assert нужен, чтобы Jacoco "засчитал" тест и учел в покрытии, поэтому метод вызывается с реальным объектом
     }
 
     @Test
-    public void test2() throws Exception {
+    public void getSoundTest() {
         cat.getSound();
         Mockito.verify(cat).getSound();
         Assert.assertEquals("Мяу", new Cat(new Feline(kitten)).getSound());

@@ -34,7 +34,7 @@ public class ParametrizedTest {
         Animal animal = new Animal();
 
         @Test
-        public void test() throws Exception {
+        public void getFoodTest() throws Exception {
             Assert.assertEquals(food, animal.getFood(animalType));
         }
     }
@@ -61,7 +61,7 @@ public class ParametrizedTest {
         KittenInterface feline = new Kitten();
 
         @Test
-        public void test() throws Exception {
+        public void doesHaveManeTest() throws Exception {
             Lion lion = new Lion(animalSex, feline);
             Assert.assertEquals(mane, lion.doesHaveMane());
         }
