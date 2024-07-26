@@ -2,7 +2,6 @@ package com.example;
 
 import org.junit.Test;
 import org.junit.Assert;
-import static org.junit.Assert.assertTrue;
 
 public class AnimalTest {
 
@@ -15,13 +14,15 @@ public class AnimalTest {
 
     @Test
     public void getFoodExceptionTest() {
+        String check = null;
         try {
             animal.getFood("Насекомое");
-            // Это именно тест Исключения - т.е. передается заведомо недопустимое значение
-            // А корректные значения тестируются в отдельном классе ParametrizedTest
+        } catch (Exception exception) {
+            Assert.assertTrue("Неизвестный вид животного, используйте значение Травоядное или Хищник".contains(exception.getMessage()));
+            // Тогда так - сохраняем сообщение произошедшего исключения в переменную
+            check = exception.getMessage();
         }
-        catch (Exception exception) {
-            assertTrue("Неизвестный вид животного, используйте значение Травоядное или Хищник".contains(exception.getMessage()));
-        }
+        // и за пределами try...catch сравниваем текст исключения с содержимым переменной - если исключение выше не произойдет, то и тест не пройдет
+        Assert.assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", check);
     }
 }
